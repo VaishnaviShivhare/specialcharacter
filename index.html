@@ -757,9 +757,9 @@
             <p class="characters"><span onclick="copyit(this)">☄</span></p>
             <p class="characters"><span onclick="copyit(this)">☪</span></p>
         </div>
-        <div id="div1"></div>
-
-        <center><button>Load More</button></center>
+        <div id="demo">
+        <center><button type="button" onclick="loadDoc()">Load More</button></center>
+        </div>
 
         <div class="article">
             <h2 id="อักษรพิเศษ">อักษรพิเศษ</h2>
@@ -838,16 +838,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src='/script.js' type='text/javascript'></script>
     <script>
-        $(document).ready(function () {
-            $("button").click(function () {
-                $.ajax({
-                    url: "cdn.txt", success: function (result) {
-                        $("#div1").html(result);
-                    }
-                });
-            });
-        });
-    </script>
+function loadDoc() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    document.getElementById("demo").innerHTML =
+    this.responseText;
+  }
+  xhttp.open("GET", "cdn.txt");
+  xhttp.send();
+}
+</script>
 </body>
 
 </html>
